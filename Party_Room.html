@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Farewell Celebration</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Woodie+Rounded&display=swap');
+  body {
+    margin: 0;
+    padding: 0;
+    background: #111;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+  }
+
+  /* Hanging bulbs with rope and glow */
+  .bulb-container {
+    position: absolute;
+    top: 0;
+    display: flex;
+    width: 100%;
+    justify-content: space-around; /* spaced out */
+  }
+
+  .bulb {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .rope {
+    width: 2px;
+    height: 100px;
+    background: #555;
+  }
+
+  .glow-bulb {
+    width: 25px;
+    height: 40px;
+    background: radial-gradient(circle at 30% 30%, #ffffcc, #ffaa00);
+    border-radius: 50%;
+    box-shadow: 0 0 30px 15px #ffaa00; /* glow effect */
+    margin-top: 5px;
+    animation: swing 3s infinite alternate ease-in-out;
+  }
+
+  @keyframes swing {
+    0% { transform: rotate(-10deg); }
+    100% { transform: rotate(10deg); }
+  }
+
+/* Glowing poppers/confetti */
+  .popper {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: currentColor;
+    animation: fall 3s linear infinite, glow 1s alternate infinite, rotate 2s linear infinite;
+  }
+
+  @keyframes fall {
+    0% { top: -10px; opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+  }
+
+  @keyframes glow {
+    0% { box-shadow: 0 0 5px currentColor; }
+    100% { box-shadow: 0 0 20px currentColor; }
+  }
+
+  @keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+.cake {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.cake-text {
+  font-weight: bold;
+  font-size: 24px;
+  color: #ff3366;
+  margin-bottom: 20px;
+}
+
+.layer {
+  height: 40px;
+  margin-bottom: 5px;
+  border-radius: 10px;
+  position: relative;
+  background: #ff99cc;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+.layer.top { width: 100px; }
+.layer.middle { width: 160px; }
+.layer.bottom { width: 220px; }
+
+.cream {
+  position: absolute;
+  top: -12px;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  background: linear-gradient(135deg, #ffb6c1, #ff69b4, #ff1493);
+  border-radius: 50% 50% 40% 40% / 60% 60% 40% 40%;
+  box-shadow: inset -2px -2px 5px rgba(0,0,0,0.1), inset 2px 2px 5px rgba(255,255,255,0.6);
+  position: relative;
+}
+
+.sprinkles {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: calc(100% - 4px);
+  height: calc(100% - 4px);
+  background-image: radial-gradient(#ff0 2px, transparent 2px),
+                    radial-gradient(#0ff 2px, transparent 2px),
+                    radial-gradient(#fff 2px, transparent 2px),
+                    radial-gradient(#f0f 2px, transparent 2px);
+  background-size: 10px 10px;
+  background-position: 0 0, 5px 2px, 2px 5px, 7px 7px;
+  pointer-events: none;
+}
+
+.candle {
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 5px;
+  height: 20px;
+  background: #ffcc33;
+  border-radius: 2px;
+  box-shadow: 0 0 5px rgba(255,200,50,0.8);
+}
+.flame {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 18px;
+  background: radial-gradient(circle at 50% 30%, #fff176, #ff8c00, #ff4500);
+  border-radius: 50% 50% 50% 50%;
+  animation: flicker 0.3s infinite alternate;
+}
+
+@keyframes flicker {
+  from { transform: translateX(-50%) scaleY(1); opacity: 1; }
+  to { transform: translateX(-50%) scaleY(1.2); opacity: 0.8; }
+}
+
+.glow-text-wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+}
+
+.glow-text {
+  font-size: 96px;
+  color: #ffd700;
+  text-align: center;
+  text-shadow: 0 0 5px #ffd700, 0 0 10px #ffd700, 0 0 20px #ffb700, 0 0 30px #ffb700, 0 0 40px #ffa500;
+  font-family: 'Woodie Rounded', cursive;
+  animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 5px #ffd700, 0 0 10px #ffd700, 0 0 20px #ffb700, 0 0 30px #ffb700, 0 0 40px #ffa500; }
+  to { text-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700, 0 0 30px #ffb700, 0 0 40px #ffb700, 0 0 50px #ffa500; }
+}
+
+</style>
+
+</style>
+</head>
+<body>
+<div class="glow-text-wrapper">
+  <div class="glow-text">
+    FAREWELL<br>CELEBRATION
+  </div>
+</div>
+<div class="bulb-container" id="bulbs"></div>
+<div id="balloons"></div>
+<div id="poppers"></div>
+
+
+<div class="cake">
+
+  <!-- Top Layer -->
+  <div class="layer top">
+    <div class="cream">
+      <div class="sprinkles"></div>
+    </div>
+    <div class="candle">
+      <div class="flame"></div>
+    </div>
+  </div>
+
+  <!-- Middle Layer -->
+  <div class="layer middle">
+    <div class="cream">
+      <div class="sprinkles"></div>
+    </div>
+  </div>
+
+  <!-- Bottom Layer -->
+  <div class="layer bottom">
+    <div class="cream">
+      <div class="sprinkles"></div>
+    </div>
+  </div>
+</div>
+<script>
+  const bulbsContainer = document.getElementById('bulbs');
+  const bulbCount = 6; // spaced along the width
+  for (let i = 0; i < bulbCount; i++) {
+    const bulb = document.createElement('div');
+    bulb.className = 'bulb';
+    
+    const rope = document.createElement('div');
+    rope.className = 'rope';
+    
+    const glowBulb = document.createElement('div');
+    glowBulb.className = 'glow-bulb';
+    
+    bulb.appendChild(rope);
+    bulb.appendChild(glowBulb);
+    bulbsContainer.appendChild(bulb);
+  }
+
+const balloonsContainer = document.getElementById('balloons');
+  const colors = ['#ff4d4d','#4da6ff','#4dff88','#ffff4d','#ff88ff','#ffaa33'];
+  
+  for(let i=0;i<12;i++){
+    const balloon = document.createElement('div');
+    balloon.className = 'balloon';
+    balloon.style.background = `radial-gradient(circle at 30% 30%, #fff, ${colors[Math.floor(Math.random()*colors.length)]})`;
+    balloon.style.left = Math.random()*window.innerWidth + 'px';
+    balloon.style.animationDuration = (5+Math.random()*5) + 's';
+    balloonsContainer.appendChild(balloon);
+
+    balloon.addEventListener('click', ()=>{
+      balloon.style.transition = '0.3s';
+      balloon.style.transform = 'scale(0)';
+      setTimeout(()=>balloon.remove(), 300);
+    });
+  }
+
+ const popperContainer = document.getElementById('poppers');
+  const popperColors = ['#ff0','#0ff','#f0f','#0f0','#f00','#f8c'];
+
+  for (let i = 0; i < 50; i++) {
+    const popper = document.createElement('div');
+    popper.className = 'popper';
+    popper.style.left = Math.random() * window.innerWidth + 'px';
+    popper.style.color = popperColors[Math.floor(Math.random() * popperColors.length)];
+    popper.style.width = popper.style.height = 5 + Math.random() * 10 + 'px';
+    popper.style.animationDuration = 2 + Math.random() * 3 + 's';
+    popperContainer.appendChild(popper);
+  }
+
+  // Cake click
+  const cake = document.getElementById('cake');
+  const cakePiece = document.getElementById('cakePiece');
+  cake.addEventListener('click', ()=>{
+    cakePiece.style.display = 'block';
+    cakePiece.style.animation = 'fly 1s forwards';
+  });
+
+  // Cake piece animation
+  const styleSheet = document.styleSheets[0];
+  styleSheet.insertRule(`@keyframes fly {
+    0% { bottom: 0; transform: translateX(-50%) scale(1);}
+    100% { bottom: 50px; transform: translateX(-50%) scale(1);}
+  }`, styleSheet.cssRules.length);
+</script>
+
+</body>
+</html>
